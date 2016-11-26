@@ -46,6 +46,11 @@ class Playcards
 
     return @carddef[index]
   end
+
+  #山札の残枚数を返す
+  def remaining
+    return @cardarray.length - @pointer
+  end
 end
 
 if __FILE__ == $0
@@ -57,5 +62,13 @@ if __FILE__ == $0
   puts "カードを続けて五枚引きます"
   5.times do
     puts cards.getcardinfo(cards.draw)
+  end
+
+  puts cards.remaining
+
+  #最後までカードを引く
+  until (card = cards.draw) == nil do
+    puts cards.getcardinfo(card)
+    puts cards.remaining
   end
 end
